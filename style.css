@@ -1,0 +1,101 @@
+#buttons {
+  display: grid;
+  grid-template-areas: "display display display display" "clear clear delete divide" "key-7 key-8 key-9 multiply" "key-4 key-5 key-6 subtract " "key-1 key-2 key-3 add" "key-0 key-00 decimal  equal ";
+  gap: 1rem;
+  border: 2rem solid paleturquoise;
+}
+#buttons #buttons__screen {
+  grid-area: display;
+}
+#buttons #buttons__1 {
+  grid-area: key-1;
+}
+#buttons #buttons__2 {
+  grid-area: key-2;
+}
+#buttons #buttons__3 {
+  grid-area: key-3;
+}
+#buttons #buttons__4 {
+  grid-area: key-4;
+}
+#buttons #buttons__5 {
+  grid-area: key-5;
+}
+#buttons #buttons__6 {
+  grid-area: key-6;
+}
+#buttons #buttons__7 {
+  grid-area: key-7;
+}
+#buttons #buttons__8 {
+  grid-area: key-8;
+}
+#buttons #buttons__9 {
+  grid-area: key-9;
+}
+#buttons #buttons__0 {
+  grid-area: key-0;
+}
+#buttons #buttons__00 {
+  grid-area: key-00;
+}
+#buttons #buttons__decimal {
+  grid-area: decimal;
+}
+#buttons #buttons__add {
+  grid-area: add;
+}
+#buttons #buttons__subtract {
+  grid-area: subtract;
+}
+#buttons #buttons__multiply {
+  grid-area: multiply;
+}
+#buttons #buttons__divide {
+  grid-area: divide;
+}
+#buttons #buttons__equal {
+  grid-area: equal;
+}
+#buttons #buttons__delete {
+  grid-area: delete;
+}
+#buttons #buttons__clear {
+  grid-area: clear;
+}
+
+.key {
+  font-size: 2rem;
+  padding: 2rem 1rem;
+  border-radius: 10%;
+  color: #f5f3f4;
+  background-color: #909595;
+  border: 0.3rem solid #040101;
+  min-width: 8rem;
+}
+
+#buttons__add, #buttons__subtract, #buttons__divide, #buttons__multiply, #buttons__equal {
+  background-color: #3b383a;
+}
+
+#buttons__delete, #buttons__clear {
+  background-color: #9a0101;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  font-size: 10px;
+}
+
+#buttons {
+  background-color: paleturquoise;
+}
+
+#buttons__screen {
+  color: #f5f3f4;
+  background-color: paleturquoise;
+  text-align: end;
+  font-size: 5rem;
+}

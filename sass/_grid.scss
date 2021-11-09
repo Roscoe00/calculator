@@ -1,0 +1,94 @@
+@import "../sass/variables";
+
+#buttons {
+   display: grid;
+   grid-template-areas:
+      "display display display display"
+      "clear clear delete divide"
+      "key-7 key-8 key-9 multiply"
+      "key-4 key-5 key-6 subtract "
+      "key-1 key-2 key-3 add"
+      "key-0 key-00 decimal  equal ";
+   gap: 1rem;
+   border: 2rem solid paleturquoise;
+
+   #buttons__screen {
+      grid-area: display;
+   }
+
+   #buttons__0 {
+      grid-area: key-0;
+   }
+   #buttons__1 {
+      grid-area: key-1;
+   }
+
+   #buttons__2 {
+      grid-area: key-2;
+   }
+
+   #buttons__3 {
+      grid-area: key-3;
+   }
+
+   #buttons__4 {
+      grid-area: key-4;
+   }
+
+   #buttons__5 {
+      grid-area: key-5;
+   }
+
+   #buttons__6 {
+      grid-area: key-6;
+   }
+
+   #buttons__7 {
+      grid-area: key-7;
+   }
+
+   #buttons__8 {
+      grid-area: key-8;
+   }
+
+   #buttons__9 {
+      grid-area: key-9;
+   }
+
+
+   #buttons__00 {
+      grid-area: key-00;
+   }
+
+   #buttons__decimal {
+      grid-area: decimal;
+   }
+
+   #buttons__equal {
+      grid-area: equal;
+   }
+   #buttons__add {
+      grid-area: add;
+   }
+
+   #buttons__subtract {
+      grid-area: subtract;
+   }
+
+   #buttons__multiply {
+      grid-area: multiply;
+   }
+
+   #buttons__divide {
+      grid-area: divide;
+   }
+
+
+   #buttons__delete {
+      grid-area: delete;
+   }
+
+   #buttons__clear {
+      grid-area: clear;
+   }
+}
