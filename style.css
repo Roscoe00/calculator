@@ -7,6 +7,9 @@
 #buttons #buttons__screen {
   grid-area: display;
 }
+#buttons #buttons__0 {
+  grid-area: key-0;
+}
 #buttons #buttons__1 {
   grid-area: key-1;
 }
@@ -34,14 +37,14 @@
 #buttons #buttons__9 {
   grid-area: key-9;
 }
-#buttons #buttons__0 {
-  grid-area: key-0;
-}
 #buttons #buttons__00 {
   grid-area: key-00;
 }
 #buttons #buttons__decimal {
   grid-area: decimal;
+}
+#buttons #buttons__equal {
+  grid-area: equal;
 }
 #buttons #buttons__add {
   grid-area: add;
@@ -55,9 +58,6 @@
 #buttons #buttons__divide {
   grid-area: divide;
 }
-#buttons #buttons__equal {
-  grid-area: equal;
-}
 #buttons #buttons__delete {
   grid-area: delete;
 }
@@ -65,7 +65,7 @@
   grid-area: clear;
 }
 
-.key {
+.key, .clear, .delete {
   font-size: 2rem;
   padding: 2rem 1rem;
   border-radius: 10%;

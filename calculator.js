@@ -21,8 +21,9 @@ const key__clear = document.querySelector("#buttons__clear")
 // maybe could have all numbers stored in an array and all operations in another
 // calculatorDisplay.unshift(key[i])
 
- const number = document.querySelectorAll(".number")
-// const operation = document.querySelectorAll(".operation")
+const keys = document.querySelectorAll(".key")
+const number = document.querySelectorAll(".number")
+const operation = document.querySelectorAll(".operation")
 const clear = document.querySelector(".clear")
 const remove = document.querySelector(".delete")
 
@@ -30,15 +31,25 @@ let calculatorDisplay = [];
 
 // const keys = [key__0,key__1,key__2,key__3,key__4,key__5,key__6,key__7,key__8,key__9,key__00,key__decimal] 
 
-for (let i = 0; i< number.length;i++) {
-   number[i].addEventListener("click", ()=>{
-      calculatorDisplay.push(number[i].innerHTML)
+
+
+for (let i = 0; i< keys.length;i++) {
+   keys[i].addEventListener("click", ()=>{
+      calculatorDisplay.push(keys[i].innerHTML)
       console.log(calculatorDisplay)
    })
 }
 
+// for (let i=0; i<operation.length; i++){
+//    operation[i].addEventListener("click", ()=>{
+//       calculatorDisplay.push(operation[i].innerHTML)
+//       console.log(calculatorDisplay)
+//    })
+// }
+
 remove.addEventListener("click",()=> {
    calculatorDisplay.pop();
+   console.log("delete button pressed")
 })
 
 clear.addEventListener("click",()=> {
