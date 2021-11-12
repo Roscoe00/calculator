@@ -1,6 +1,6 @@
 @import "../sass/variables";
 
-.key {
+.key, .clear, .delete, .equal{
    font-size: 2rem;
    padding: 2rem 1rem;
    border-radius: 10%;
@@ -16,4 +16,8 @@
 
 #buttons__delete, #buttons__clear {
    background-color: $tertiaryColor
+}
+
+#buttons__screen {
+   min-height: 6rem;
 }
