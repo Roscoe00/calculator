@@ -1,6 +1,6 @@
 #buttons {
   display: grid;
-  grid-template-areas: "display display display display" "clear clear delete divide" "key-7 key-8 key-9 multiply" "key-4 key-5 key-6 subtract " "key-1 key-2 key-3 add" "key-0 key-00 decimal  equal ";
+  grid-template-areas: "display display display display" "clear clear delete divide" "key-7 key-8 key-9 multiply" "key-4 key-5 key-6 subtract " "key-1 key-2 key-3 add" "key-0 key-00 decimal equal ";
   gap: 1rem;
   border: 2rem solid paleturquoise;
 }
@@ -65,7 +65,7 @@
   grid-area: clear;
 }
 
-.key, .clear, .delete {
+.key, .clear, .delete, .equal {
   font-size: 2rem;
   padding: 2rem 1rem;
   border-radius: 10%;

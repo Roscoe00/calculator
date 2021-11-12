@@ -1,16 +1,18 @@
+// const key__0 = document.querySelector("#buttons__0")
+// const key__1 = document.querySelector("#buttons__1")
+// const key__2 = document.querySelector("#buttons__2")
+// const key__3 = document.querySelector("#buttons__3")
+// const key__4 = document.querySelector("#buttons__4")
+// const key__5 = document.querySelector("#buttons__5")
+// const key__6 = document.querySelector("#buttons__6")
+// const key__7 = document.querySelector("#buttons__7")
+// const key__8 = document.querySelector("#buttons__8")
+// const key__9 = document.querySelector("#buttons__9")
+// const key__00 = document.querySelector("#buttons__00")
+// const key__decimal = document.querySelector("#buttons__decimal")
+
+const subDisplay = document.querySelector("#buttons__screen")
 const realDisplay = document.querySelector("#buttons__screen")
-const key__0 = document.querySelector("#buttons__0")
-const key__1 = document.querySelector("#buttons__1")
-const key__2 = document.querySelector("#buttons__2")
-const key__3 = document.querySelector("#buttons__3")
-const key__4 = document.querySelector("#buttons__4")
-const key__5 = document.querySelector("#buttons__5")
-const key__6 = document.querySelector("#buttons__6")
-const key__7 = document.querySelector("#buttons__7")
-const key__8 = document.querySelector("#buttons__8")
-const key__9 = document.querySelector("#buttons__9")
-const key__00 = document.querySelector("#buttons__00")
-const key__decimal = document.querySelector("#buttons__decimal")
 const key__equal = document.querySelector("#buttons__equal")
 const key__add = document.querySelector("#buttons__add")
 const key__subtract = document.querySelector("#buttons__subtract")
@@ -20,33 +22,91 @@ const key__delete = document.querySelector("#buttons__delete")
 const key__clear = document.querySelector("#buttons__clear")
 
 // maybe could have all numbers stored in an array and all operations in another
-// calculatorDisplay.unshift(key[i])
+// calculatorMemory.unshift(key[i])
 
 const keys = document.querySelectorAll(".key")
 const number = document.querySelectorAll(".number")
 const operation = document.querySelectorAll(".operation")
 
-let calculatorDisplay = [];
+let calculatorMemory = [];
 let currentDisplay = "";
+let solution ="";
 
-for (let i = 0; i< keys.length;i++) {
-   keys[i].addEventListener("click", ()=>{
+const spliceAndReplace = (solution) => {
+   calculatorMemory.splice(0,3,solution)
+   console.log(calculatorMemory)
+   console.log("spliceAndReplace is running")
+}
+
+const itsMathsTime = () => {
+   if (calculatorMemory[1]===key__divide.innerHTML){
+      // if (calculatorMemory[0]===""){
+
+      // }
+      // else{
+      const division = `${Number(calculatorMemory[0])/Number(calculatorMemory[2])}`
+         spliceAndReplace(division)
+      // }
+   }else if (calculatorMemory[1]===key__multiply.innerHTML){
+      const multiplication = `${Number(calculatorMemory[0])*Number(calculatorMemory[2])}`
+         spliceAndReplace(multiplication)
+   }else if (calculatorMemory[1]===key__subtract.innerHTML){
+      const subtraction = `${Number(calculatorMemory[0])-Number(calculatorMemory[2])}`
+         spliceAndReplace(subtraction)
+   }else if(calculatorMemory[1]===key__add.innerHTML){
+      const addition = `${Number(calculatorMemory[0])+Number(calculatorMemory[2])}`
+         spliceAndReplace(addition)
+   }
+}
+
+// ==========================
+// =========NUMBERS==========
+// ==========================
+for (let i = 0; i< number.length;i++) {
+   number[i].addEventListener("click", ()=>{
       currentDisplay = `${currentDisplay}` + `${keys[i].innerHTML}`
-      if (keys[i]===key__add){       
-         calculatorDisplay.push(currentDisplay.substring(0, currentDisplay.length - 1))
-         calculatorDisplay.push(currentDisplay.substring(currentDisplay.length-1, currentDisplay.length))
-         currentDisplay="";
-         console.log(calculatorDisplay)
-         console.log("add button pressed")
-         
-      } else{
-         console.log(calculatorDisplay)
       realDisplay.innerHTML = `${currentDisplay}`
+   })
+}
+
+// ==========================
+// =========Operators========
+// ==========================
+
+for (let i = 0; i<operation.length;i++) {
+   operation[i].addEventListener("click", ()=>{
+      calculatorMemory.push(currentDisplay)
+      calculatorMemory.push(operation[i].innerHTML)
+      currentDisplay="";
+      console.log(calculatorMemory)
+      if (calculatorMemory.length===4 && calculatorMemory[2]!=""){
+         itsMathsTime()
+      }else if(calculatorMemory.length===4 && calculatorMemory[2]===""){
+         newOperator=calculatorMemory[3]
+         calculatorMemory.splice(1,3,newOperator)
+         console.log(calculatorMemory)
+         console.log("operator changed")
       }
    })
 }
-// possible way of removing last operator pressed?
-// calculatorDisplay = calculatorDisplay.splice(i,1);
+
+// ==========================
+// ==========EQUAL==========
+// ==========================
+key__equal.addEventListener("click",()=> {
+   calculatorMemory.push(currentDisplay)
+   if (calculatorMemory.length===3){
+      itsMathsTime()
+      currentDisplay=`${calculatorMemory[0]}`;
+      realDisplay.innerHTML = `${currentDisplay}`
+      calculatorMemory=[];
+   }
+
+})
+
+// ==========================
+// =========DELETE===========
+// ==========================
 
 key__delete.addEventListener("click",()=> {
    currentDisplay=currentDisplay.substring(0, currentDisplay.length - 1);
@@ -54,7 +114,13 @@ key__delete.addEventListener("click",()=> {
    realDisplay.innerHTML = `${currentDisplay}`
 })
 
+// ==========================
+// =========CLEAR===========
+// ==========================
+
+
 key__clear.addEventListener("click",()=> {
    console.log("clear button pressed")
    currentDisplay="";
+   calculatorMemory=[];
    realDisplay.innerHTML = `${currentDisplay}`})
