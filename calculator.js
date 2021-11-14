@@ -9,7 +9,8 @@
 // const key__8 = document.querySelector("#buttons__8")
 // const key__9 = document.querySelector("#buttons__9")
 // const key__00 = document.querySelector("#buttons__00")
-// const key__decimal = document.querySelector("#buttons__decimal")
+const key__decimal = document.querySelector("#buttons__decimal")
+const key__minus = document.querySelector("#buttons__minus")
 
 const workingDisplay = document.querySelector("#buttons__subscreen")
 const finalDisplay = document.querySelector("#buttons__screen")
@@ -33,8 +34,6 @@ let calculatorMemory = [];
 let subDisplay="";
 let mainDisplay = "";
 let solution ="";
-hasDot=false
-
 
 const spliceAndReplace = (solution) => {
    calculatorMemory.splice(0,3,solution)
@@ -74,6 +73,36 @@ for (let i = 0; i< number.length;i++) {
       workingDisplay.innerHTML = `${subDisplay}`
    })
 }
+
+
+// ==========================
+// ====decimal and minus=====
+// ==========================
+
+key__decimal.addEventListener("click",()=> {
+if (mainDisplay.includes(".")){
+}else{
+   mainDisplay = `${mainDisplay}` + `${key__decimal.innerHTML}`
+   finalDisplay.innerHTML = `${mainDisplay}`
+   subDisplay= `${subDisplay}` + `${key__decimal.innerHTML}`
+   workingDisplay.innerHTML = `${subDisplay}`
+}
+})
+
+key__minus.addEventListener("click",()=> {
+if (mainDisplay===""){
+   mainDisplay = "-" + `${mainDisplay}`
+   finalDisplay.innerHTML = `${mainDisplay}`
+   subDisplay=`${subDisplay}` + "-"
+   workingDisplay.innerHTML = `${subDisplay}`
+}else if (mainDisplay==="-"){
+   subDisplay=subDisplay.substring(0, subDisplay.length - 1);
+   workingDisplay.innerHTML = `${subDisplay}`
+   mainDisplay="";
+   finalDisplay.innerHTML = `${mainDisplay}`
+}
+})
+
 
 // ==========================
 // =========Operators========
