@@ -9,7 +9,7 @@
       "key-7 key-8 key-9 multiply"
       "key-4 key-5 key-6 subtract "
       "key-1 key-2 key-3 add"
-      "key-0 key-00 decimal equal ";
+      "key-0 decimal negative equal ";
    gap: 1rem;
    border: 2rem solid paleturquoise;
 
@@ -59,8 +59,8 @@
    }
 
 
-   #buttons__00 {
-      grid-area: key-00;
+   #buttons__negative {
+      grid-area: negative;
    }
 
    #buttons__decimal {

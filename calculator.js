@@ -84,9 +84,17 @@ for (let i = 0; i<operation.length;i++) {
       calculatorMemory.push(mainDisplay)
       calculatorMemory.push(operation[i].innerHTML)
       mainDisplay="";
-      subDisplay= `${subDisplay}` + `${operation[i].innerHTML}`
-      workingDisplay.innerHTML = `${subDisplay}`
       console.log(calculatorMemory)
+      if (subDisplay.charAt(subDisplay.length-1)===key__multiply.innerHTML ||
+      subDisplay.charAt(subDisplay.length-1)===key__divide.innerHTML ||
+      subDisplay.charAt(subDisplay.length-1)===key__add.innerHTML||
+      subDisplay.charAt(subDisplay.length-1)===key__subtract.innerHTML){
+      subDisplay= `${subDisplay.substring(0, subDisplay.length - 1)}` + `${operation[i].innerHTML}`
+      workingDisplay.innerHTML = `${subDisplay}`
+      }else {
+         subDisplay= `${subDisplay}` + `${operation[i].innerHTML}`
+      workingDisplay.innerHTML = `${subDisplay}`
+      }
       if (calculatorMemory.length===4 && calculatorMemory[2]!=""){
          itsMathsTime()
       }else if(calculatorMemory.length===4 && calculatorMemory[2]===""){
@@ -114,6 +122,8 @@ key__equal.addEventListener("click",()=> {
       finalDisplay.innerHTML = `${mainDisplay}`
       calculatorMemory=[];
    }
+   mainDisplay=""
+   subDisplay="";
 })
 
 // ==========================
@@ -123,10 +133,17 @@ key__equal.addEventListener("click",()=> {
 key__delete.addEventListener("click",()=> {
    mainDisplay=mainDisplay.substring(0, mainDisplay.length - 1);
    finalDisplay.innerHTML = `${mainDisplay}`
+   if (subDisplay.charAt(subDisplay.length-1)===key__multiply.innerHTML ||
+   subDisplay.charAt(subDisplay.length-1)===key__divide.innerHTML ||
+   subDisplay.charAt(subDisplay.length-1)===key__add.innerHTML||
+   subDisplay.charAt(subDisplay.length-1)===key__subtract.innerHTML){
+   }else {
    subDisplay=subDisplay.substring(0, subDisplay.length - 1);
    workingDisplay.innerHTML = `${subDisplay}`
    console.log("delete button pressed")
+   }
 })
+
 
 // ==========================
 // =========CLEAR===========
