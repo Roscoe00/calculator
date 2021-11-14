@@ -1,8 +1,6 @@
 #buttons {
   display: grid;
   grid-template-areas: "work work work work" "display display display display" "clear clear delete divide" "key-7 key-8 key-9 multiply" "key-4 key-5 key-6 subtract " "key-1 key-2 key-3 add" "key-0 decimal negative equal ";
-  gap: 1rem;
-  border: 2rem solid paleturquoise;
 }
 #buttons #buttons__screen {
   grid-area: display;
@@ -69,12 +67,13 @@
 }
 
 .key, .clear, .delete, .equal {
+  font-family: "exo", sans-serif;
   font-size: 2rem;
-  padding: 2rem 1rem;
+  padding: 1.6rem 0.8rem;
   border-radius: 10%;
   color: #f5f3f4;
   background-color: #909595;
-  border: 0.3rem solid #040101;
+  border: 0.5rem solid #040101;
   min-width: 8rem;
 }
 
@@ -87,11 +86,28 @@
 }
 
 #buttons__screen {
-  min-height: 6rem;
+  min-height: 6.5rem;
 }
 
 #buttons__subscreen {
-  min-height: 3rem;
+  min-height: 3.5rem;
+}
+
+.key:hover, .clear:hover, .delete:hover, .equal:hover {
+  border: 0.5rem solid #670e12;
+}
+
+.key:active {
+  background-color: #666768;
+}
+
+#buttons__delete:active, #buttons__clear:active {
+  background-color: #350606;
+}
+
+#buttons__add:active, #buttons__subtract:active, #buttons__divide:active,
+#buttons__multiply:active, #buttons__equal:active {
+  background-color: #242123;
 }
 
 * {
@@ -100,14 +116,31 @@
   font-size: 10px;
 }
 
+body {
+  background-image: url(./stars.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
 #buttons {
   background-color: #040101;
+  padding: 2rem 1rem;
+  max-width: 320px;
+  margin: auto;
+  margin-top: 10rem;
+  border-radius: 10%;
+  border: 0.3rem solid #f2f5ff;
 }
 
 #buttons__screen, #buttons__subscreen {
-  color: #f5f3f4;
+  font-family: "exo", sans-serif;
+  color: #f2f5ff;
   background-color: #040101;
   text-align: end;
+  margin: 0 3rem;
+  inline-size: 26rem;
+  overflow-wrap: break-word;
 }
 
 #buttons__screen {
