@@ -8,13 +8,19 @@
 }
 
 #buttons {
-   background-color: paleturquoise;
+   background-color: $backgroundColor;
 }
 
-#buttons__screen { 
+#buttons__screen,#buttons__subscreen { 
    color: $primaryFontColor;
-   background-color: paleturquoise;
+   background-color: $backgroundColor;
    text-align: end;
+}
+
+#buttons__screen{
    font-size: 5rem;
 }
 
+#buttons__subscreen{
+   font-size: 2rem;
+}

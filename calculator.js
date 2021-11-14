@@ -11,8 +11,8 @@
 // const key__00 = document.querySelector("#buttons__00")
 // const key__decimal = document.querySelector("#buttons__decimal")
 
-const subDisplay = document.querySelector("#buttons__screen")
-const realDisplay = document.querySelector("#buttons__screen")
+const workingDisplay = document.querySelector("#buttons__subscreen")
+const finalDisplay = document.querySelector("#buttons__screen")
 const key__equal = document.querySelector("#buttons__equal")
 const key__add = document.querySelector("#buttons__add")
 const key__subtract = document.querySelector("#buttons__subtract")
@@ -29,8 +29,12 @@ const number = document.querySelectorAll(".number")
 const operation = document.querySelectorAll(".operation")
 
 let calculatorMemory = [];
-let currentDisplay = "";
+// let 
+let subDisplay="";
+let mainDisplay = "";
 let solution ="";
+hasDot=false
+
 
 const spliceAndReplace = (solution) => {
    calculatorMemory.splice(0,3,solution)
@@ -41,7 +45,6 @@ const spliceAndReplace = (solution) => {
 const itsMathsTime = () => {
    if (calculatorMemory[1]===key__divide.innerHTML){
       // if (calculatorMemory[0]===""){
-
       // }
       // else{
       const division = `${Number(calculatorMemory[0])/Number(calculatorMemory[2])}`
@@ -62,10 +65,13 @@ const itsMathsTime = () => {
 // ==========================
 // =========NUMBERS==========
 // ==========================
+
 for (let i = 0; i< number.length;i++) {
    number[i].addEventListener("click", ()=>{
-      currentDisplay = `${currentDisplay}` + `${keys[i].innerHTML}`
-      realDisplay.innerHTML = `${currentDisplay}`
+      mainDisplay = `${mainDisplay}` + `${number[i].innerHTML}`
+      finalDisplay.innerHTML = `${mainDisplay}`
+      subDisplay= `${subDisplay}` + `${number[i].innerHTML}`
+      workingDisplay.innerHTML = `${subDisplay}`
    })
 }
 
@@ -75,9 +81,11 @@ for (let i = 0; i< number.length;i++) {
 
 for (let i = 0; i<operation.length;i++) {
    operation[i].addEventListener("click", ()=>{
-      calculatorMemory.push(currentDisplay)
+      calculatorMemory.push(mainDisplay)
       calculatorMemory.push(operation[i].innerHTML)
-      currentDisplay="";
+      mainDisplay="";
+      subDisplay= `${subDisplay}` + `${operation[i].innerHTML}`
+      workingDisplay.innerHTML = `${subDisplay}`
       console.log(calculatorMemory)
       if (calculatorMemory.length===4 && calculatorMemory[2]!=""){
          itsMathsTime()
@@ -93,15 +101,19 @@ for (let i = 0; i<operation.length;i++) {
 // ==========================
 // ==========EQUAL==========
 // ==========================
+
 key__equal.addEventListener("click",()=> {
-   calculatorMemory.push(currentDisplay)
+   calculatorMemory.push(mainDisplay)
    if (calculatorMemory.length===3){
       itsMathsTime()
-      currentDisplay=`${calculatorMemory[0]}`;
-      realDisplay.innerHTML = `${currentDisplay}`
+      mainDisplay=`${calculatorMemory[0]}`;
+      finalDisplay.innerHTML = `${mainDisplay}`
+      calculatorMemory=[];
+   }else{
+      mainDisplay=`${calculatorMemory[0]}`;
+      finalDisplay.innerHTML = `${mainDisplay}`
       calculatorMemory=[];
    }
-
 })
 
 // ==========================
@@ -109,18 +121,22 @@ key__equal.addEventListener("click",()=> {
 // ==========================
 
 key__delete.addEventListener("click",()=> {
-   currentDisplay=currentDisplay.substring(0, currentDisplay.length - 1);
+   mainDisplay=mainDisplay.substring(0, mainDisplay.length - 1);
+   finalDisplay.innerHTML = `${mainDisplay}`
+   subDisplay=subDisplay.substring(0, subDisplay.length - 1);
+   workingDisplay.innerHTML = `${subDisplay}`
    console.log("delete button pressed")
-   realDisplay.innerHTML = `${currentDisplay}`
 })
 
 // ==========================
 // =========CLEAR===========
 // ==========================
 
-
 key__clear.addEventListener("click",()=> {
    console.log("clear button pressed")
-   currentDisplay="";
+   mainDisplay="";
+   subDisplay="";
    calculatorMemory=[];
-   realDisplay.innerHTML = `${currentDisplay}`})
+   finalDisplay.innerHTML = `${mainDisplay}`
+   workingDisplay.innerHTML = `${mainDisplay}`
+})

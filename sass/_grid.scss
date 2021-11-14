@@ -3,6 +3,7 @@
 #buttons {
    display: grid;
    grid-template-areas:
+      "work work work work"
       "display display display display"
       "clear clear delete divide"
       "key-7 key-8 key-9 multiply"
@@ -15,7 +16,9 @@
    #buttons__screen {
       grid-area: display;
    }
-
+   #buttons__subscreen {
+      grid-area: work;
+   }
    #buttons__0 {
       grid-area: key-0;
    }

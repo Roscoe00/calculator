@@ -1,11 +1,14 @@
 #buttons {
   display: grid;
-  grid-template-areas: "display display display display" "clear clear delete divide" "key-7 key-8 key-9 multiply" "key-4 key-5 key-6 subtract " "key-1 key-2 key-3 add" "key-0 key-00 decimal equal ";
+  grid-template-areas: "work work work work" "display display display display" "clear clear delete divide" "key-7 key-8 key-9 multiply" "key-4 key-5 key-6 subtract " "key-1 key-2 key-3 add" "key-0 key-00 decimal equal ";
   gap: 1rem;
   border: 2rem solid paleturquoise;
 }
 #buttons #buttons__screen {
   grid-area: display;
+}
+#buttons #buttons__subscreen {
+  grid-area: work;
 }
 #buttons #buttons__0 {
   grid-area: key-0;
@@ -87,6 +90,11 @@
   min-height: 6rem;
 }
 
+#buttons__subscreen {
+  background-color: darkblue;
+  min-height: 3rem;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -94,12 +102,19 @@
 }
 
 #buttons {
-  background-color: paleturquoise;
+  background-color: #040101;
+}
+
+#buttons__screen, #buttons__subscreen {
+  color: #f5f3f4;
+  background-color: #040101;
+  text-align: end;
 }
 
 #buttons__screen {
-  color: #f5f3f4;
-  background-color: paleturquoise;
-  text-align: end;
   font-size: 5rem;
+}
+
+#buttons__subscreen {
+  font-size: 2rem;
 }
