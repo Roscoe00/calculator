@@ -7,14 +7,37 @@
    font-size: 10px;
 }
 
-#buttons {
-   background-color: paleturquoise;
+body {
+   background-image: url(./stars.jpg);
+   background-repeat:no-repeat;
+   background-position: center center;
+   background-size:cover;
 }
 
-#buttons__screen { 
-   color: $primaryFontColor;
-   background-color: paleturquoise;
+#buttons {
+   background-color: $backgroundColor;
+   padding:2rem 1rem;
+   max-width: 320px;
+   margin:auto;
+   margin-top: 10rem;
+   border-radius: 10%;
+   border: 0.3rem solid $screenColor;
+}
+
+#buttons__screen,#buttons__subscreen { 
+   font-family: $font;
+   color: $screenColor;
+   background-color: $backgroundColor;
    text-align: end;
+   margin: 0 3rem;
+   inline-size: 26rem;
+   overflow-wrap: break-word;
+}
+
+#buttons__screen{
    font-size: 5rem;
 }
 
+#buttons__subscreen{
+   font-size: 2rem;
+}

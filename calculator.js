@@ -1,52 +1,36 @@
-// const key__0 = document.querySelector("#buttons__0")
-// const key__1 = document.querySelector("#buttons__1")
-// const key__2 = document.querySelector("#buttons__2")
-// const key__3 = document.querySelector("#buttons__3")
-// const key__4 = document.querySelector("#buttons__4")
-// const key__5 = document.querySelector("#buttons__5")
-// const key__6 = document.querySelector("#buttons__6")
-// const key__7 = document.querySelector("#buttons__7")
-// const key__8 = document.querySelector("#buttons__8")
-// const key__9 = document.querySelector("#buttons__9")
-// const key__00 = document.querySelector("#buttons__00")
-// const key__decimal = document.querySelector("#buttons__decimal")
+const workingDisplay = document.querySelector("#buttons__subscreen")
+const finalDisplay = document.querySelector("#buttons__screen")
 
-const subDisplay = document.querySelector("#buttons__screen")
-const realDisplay = document.querySelector("#buttons__screen")
+const key__decimal = document.querySelector("#buttons__decimal")
+const key__minus = document.querySelector("#buttons__minus")
+
 const key__equal = document.querySelector("#buttons__equal")
 const key__add = document.querySelector("#buttons__add")
 const key__subtract = document.querySelector("#buttons__subtract")
 const key__multiply = document.querySelector("#buttons__multiply")
 const key__divide = document.querySelector("#buttons__divide")
+
 const key__delete = document.querySelector("#buttons__delete")
 const key__clear = document.querySelector("#buttons__clear")
 
-// maybe could have all numbers stored in an array and all operations in another
-// calculatorMemory.unshift(key[i])
-
-const keys = document.querySelectorAll(".key")
 const number = document.querySelectorAll(".number")
 const operation = document.querySelectorAll(".operation")
 
 let calculatorMemory = [];
-let currentDisplay = "";
+let subDisplay="";
+let mainDisplay = "";
 let solution ="";
 
 const spliceAndReplace = (solution) => {
    calculatorMemory.splice(0,3,solution)
-   console.log(calculatorMemory)
-   console.log("spliceAndReplace is running")
+   // console.log(calculatorMemory)
+   // console.log("spliceAndReplace is running")
 }
 
 const itsMathsTime = () => {
    if (calculatorMemory[1]===key__divide.innerHTML){
-      // if (calculatorMemory[0]===""){
-
-      // }
-      // else{
       const division = `${Number(calculatorMemory[0])/Number(calculatorMemory[2])}`
          spliceAndReplace(division)
-      // }
    }else if (calculatorMemory[1]===key__multiply.innerHTML){
       const multiplication = `${Number(calculatorMemory[0])*Number(calculatorMemory[2])}`
          spliceAndReplace(multiplication)
@@ -62,12 +46,50 @@ const itsMathsTime = () => {
 // ==========================
 // =========NUMBERS==========
 // ==========================
+
 for (let i = 0; i< number.length;i++) {
    number[i].addEventListener("click", ()=>{
-      currentDisplay = `${currentDisplay}` + `${keys[i].innerHTML}`
-      realDisplay.innerHTML = `${currentDisplay}`
+      mainDisplay = `${mainDisplay}` + `${number[i].innerHTML}`
+      finalDisplay.innerHTML = `${mainDisplay}`
+      subDisplay= `${subDisplay}` + `${number[i].innerHTML}`
+      workingDisplay.innerHTML = `${subDisplay}`
    })
 }
+
+
+// ==========================
+// ====decimal and minus=====
+// ==========================
+
+key__decimal.addEventListener("click",()=> {
+if (mainDisplay.includes(".")){
+}else{
+   mainDisplay = `${mainDisplay}` + `${key__decimal.innerHTML}`
+   finalDisplay.innerHTML = `${mainDisplay}`
+   subDisplay= `${subDisplay}` + `${key__decimal.innerHTML}`
+   workingDisplay.innerHTML = `${subDisplay}`
+}
+})
+
+key__minus.addEventListener("click",()=> {
+if (mainDisplay.indexOf("-")===-1){
+   mainDisplay = "-" + `${mainDisplay}`
+   finalDisplay.innerHTML = `${mainDisplay}`
+   if (subDisplay.includes(mainDisplay.substring(1,mainDisplay.length))){
+      subDisplay=`${subDisplay.substring(0,subDisplay.length - mainDisplay.length+1)}` + `${mainDisplay}`
+      workingDisplay.innerHTML = `${subDisplay}`
+   }else {
+      subDisplay=`${mainDisplay}`
+      workingDisplay.innerHTML = `${subDisplay}`
+   }
+}else if (mainDisplay.includes("-")){
+   subDisplay=subDisplay.substring(0, subDisplay.indexOf("-")) + subDisplay.substring(subDisplay.indexOf("-")+1, subDisplay.length);
+   workingDisplay.innerHTML = `${subDisplay}`
+   mainDisplay=mainDisplay.substring(1, mainDisplay.length);;
+   finalDisplay.innerHTML = `${mainDisplay}`
+}
+})
+
 
 // ==========================
 // =========Operators========
@@ -75,17 +97,27 @@ for (let i = 0; i< number.length;i++) {
 
 for (let i = 0; i<operation.length;i++) {
    operation[i].addEventListener("click", ()=>{
-      calculatorMemory.push(currentDisplay)
+      calculatorMemory.push(mainDisplay)
       calculatorMemory.push(operation[i].innerHTML)
-      currentDisplay="";
-      console.log(calculatorMemory)
+      mainDisplay="";
+      // console.log(calculatorMemory)
+      if (subDisplay.charAt(subDisplay.length-1)===key__multiply.innerHTML ||
+      subDisplay.charAt(subDisplay.length-1)===key__divide.innerHTML ||
+      subDisplay.charAt(subDisplay.length-1)===key__add.innerHTML||
+      subDisplay.charAt(subDisplay.length-1)===key__subtract.innerHTML){
+      subDisplay= `${subDisplay.substring(0, subDisplay.length - 1)}` + `${operation[i].innerHTML}`
+      workingDisplay.innerHTML = `${subDisplay}`
+      }else {
+         subDisplay= `${subDisplay}` + `${operation[i].innerHTML}`
+      workingDisplay.innerHTML = `${subDisplay}`
+      }
       if (calculatorMemory.length===4 && calculatorMemory[2]!=""){
          itsMathsTime()
       }else if(calculatorMemory.length===4 && calculatorMemory[2]===""){
          newOperator=calculatorMemory[3]
          calculatorMemory.splice(1,3,newOperator)
-         console.log(calculatorMemory)
-         console.log("operator changed")
+         // console.log(calculatorMemory)
+         // console.log("operator changed")
       }
    })
 }
@@ -93,15 +125,19 @@ for (let i = 0; i<operation.length;i++) {
 // ==========================
 // ==========EQUAL==========
 // ==========================
+
 key__equal.addEventListener("click",()=> {
-   calculatorMemory.push(currentDisplay)
+   calculatorMemory.push(mainDisplay)
    if (calculatorMemory.length===3){
       itsMathsTime()
-      currentDisplay=`${calculatorMemory[0]}`;
-      realDisplay.innerHTML = `${currentDisplay}`
+      mainDisplay=`${calculatorMemory[0]}`;
+      finalDisplay.innerHTML = `${mainDisplay}`
+      calculatorMemory=[];
+   }else{
+      mainDisplay=`${calculatorMemory[0]}`;
+      finalDisplay.innerHTML = `${mainDisplay}`
       calculatorMemory=[];
    }
-
 })
 
 // ==========================
@@ -109,18 +145,31 @@ key__equal.addEventListener("click",()=> {
 // ==========================
 
 key__delete.addEventListener("click",()=> {
-   currentDisplay=currentDisplay.substring(0, currentDisplay.length - 1);
-   console.log("delete button pressed")
-   realDisplay.innerHTML = `${currentDisplay}`
+      if (subDisplay.includes(mainDisplay,-1) && mainDisplay!="") {
+         mainDisplay=mainDisplay.substring(0, mainDisplay.length - 1);
+         finalDisplay.innerHTML = `${mainDisplay}`
+         subDisplay=subDisplay.substring(0, subDisplay.length - 1);
+         workingDisplay.innerHTML = `${subDisplay}`
+      }else if (subDisplay.includes(mainDisplay,-1) && mainDisplay===""){
+      }else {
+         mainDisplay=mainDisplay.substring(0, mainDisplay.length - 1);
+         finalDisplay.innerHTML = `${mainDisplay}`
+         subDisplay=mainDisplay;
+         workingDisplay.innerHTML = `${subDisplay}`
+//    // console.log("delete button pressed")
+   }
 })
+
 
 // ==========================
 // =========CLEAR===========
 // ==========================
 
-
 key__clear.addEventListener("click",()=> {
-   console.log("clear button pressed")
-   currentDisplay="";
+   // console.log("clear button pressed")
+   mainDisplay="";
+   subDisplay="";
    calculatorMemory=[];
-   realDisplay.innerHTML = `${currentDisplay}`})
+   finalDisplay.innerHTML = `${mainDisplay}`
+   workingDisplay.innerHTML = `${mainDisplay}`
+})

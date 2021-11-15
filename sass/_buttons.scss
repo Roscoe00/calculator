@@ -1,12 +1,14 @@
 @import "../sass/variables";
+@import "./font";
 
 .key, .clear, .delete, .equal{
+   font-family: $font;
    font-size: 2rem;
-   padding: 2rem 1rem;
+   padding: 1.6rem 0.8rem;
    border-radius: 10%;
    color: $primaryFontColor;
    background-color: $primaryColor;
-   border: 0.3rem solid $backgroundColor ;
+   border: 0.5rem solid $backgroundColor ;
    min-width: 8rem;
 }
 
@@ -19,5 +21,24 @@
 }
 
 #buttons__screen {
-   min-height: 6rem;
+   min-height: 6.5rem;
 }
+#buttons__subscreen {
+   min-height: 3.5rem;
+}
+
+.key:hover, .clear:hover, .delete:hover, .equal:hover {
+   border: 0.5rem solid $hover;
+}
+
+.key:active{
+   background-color: $activeNumber;
+}
+
+#buttons__delete:active, #buttons__clear:active {
+   background-color: $activeClear;
+}
+#buttons__add:active, #buttons__subtract:active, #buttons__divide:active,
+ #buttons__multiply:active, #buttons__equal:active {
+    background-color: $activeOperation;
+ }
