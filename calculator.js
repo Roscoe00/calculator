@@ -95,6 +95,8 @@ if (mainDisplay.indexOf("-")===-1){
 // =========Operators========
 // ==========================
 
+//could add reset for operations when more than 2 are done in a row e.g.2+3+5
+
 for (let i = 0; i<operation.length;i++) {
    operation[i].addEventListener("click", ()=>{
       calculatorMemory.push(mainDisplay)
@@ -138,6 +140,7 @@ key__equal.addEventListener("click",()=> {
       finalDisplay.innerHTML = `${mainDisplay}`
       calculatorMemory=[];
    }
+   subDisplay=mainDisplay;
 })
 
 // ==========================
