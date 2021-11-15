@@ -138,9 +138,6 @@ key__equal.addEventListener("click",()=> {
       finalDisplay.innerHTML = `${mainDisplay}`
       calculatorMemory=[];
    }
-   // mainDisplay=""
-   // subDisplay="";
-
 })
 
 // ==========================
@@ -148,16 +145,18 @@ key__equal.addEventListener("click",()=> {
 // ==========================
 
 key__delete.addEventListener("click",()=> {
-   mainDisplay=mainDisplay.substring(0, mainDisplay.length - 1);
-   finalDisplay.innerHTML = `${mainDisplay}`
-   if (subDisplay.charAt(subDisplay.length-1)===key__multiply.innerHTML ||
-   subDisplay.charAt(subDisplay.length-1)===key__divide.innerHTML ||
-   subDisplay.charAt(subDisplay.length-1)===key__add.innerHTML||
-   subDisplay.charAt(subDisplay.length-1)===key__subtract.innerHTML){
-   }else {
-   subDisplay=subDisplay.substring(0, subDisplay.length - 1);
-   workingDisplay.innerHTML = `${subDisplay}`
-   // console.log("delete button pressed")
+      if (subDisplay.includes(mainDisplay,-1) && mainDisplay!="") {
+         mainDisplay=mainDisplay.substring(0, mainDisplay.length - 1);
+         finalDisplay.innerHTML = `${mainDisplay}`
+         subDisplay=subDisplay.substring(0, subDisplay.length - 1);
+         workingDisplay.innerHTML = `${subDisplay}`
+      }else if (subDisplay.includes(mainDisplay,-1) && mainDisplay===""){
+      }else {
+         mainDisplay=mainDisplay.substring(0, mainDisplay.length - 1);
+         finalDisplay.innerHTML = `${mainDisplay}`
+         subDisplay=mainDisplay;
+         workingDisplay.innerHTML = `${subDisplay}`
+//    // console.log("delete button pressed")
    }
 })
 
