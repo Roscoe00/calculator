@@ -2,6 +2,7 @@
 
 #buttons {
    display: grid;
+   grid-template-columns: repeat(4,25%);
    grid-template-areas:
       "work work work work"
       "display display display display"

@@ -10,8 +10,9 @@
 body {
    background-image: url(./stars.jpg);
    background-repeat:no-repeat;
-   background-position: center center;
    background-size:cover;
+   background-position: center;
+   background-attachment: fixed;
 }
 
 #buttons {
@@ -30,7 +31,6 @@ body {
    background-color: $backgroundColor;
    text-align: end;
    margin: 0 3rem;
-   inline-size: 26rem;
    overflow-wrap: break-word;
 }
 
@@ -40,4 +40,15 @@ body {
 
 #buttons__subscreen{
    font-size: 2rem;
+}
+
+@media screen and (min-width:768px){
+   *{
+      font-size: 15px;
+   }
+
+   #buttons {
+      margin-top: 2rem;
+      max-width: 640px;
+   }
 }

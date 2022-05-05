@@ -1,5 +1,6 @@
 #buttons {
   display: grid;
+  grid-template-columns: repeat(4, 25%);
   grid-template-areas: "work work work work" "display display display display" "clear clear delete divide" "key-7 key-8 key-9 multiply" "key-4 key-5 key-6 subtract " "key-1 key-2 key-3 add" "key-0 decimal negative equal ";
 }
 #buttons #buttons__screen {
@@ -74,7 +75,6 @@
   color: #f5f3f4;
   background-color: #909595;
   border: 0.5rem solid #040101;
-  min-width: 8rem;
 }
 
 #buttons__add, #buttons__subtract, #buttons__divide, #buttons__multiply, #buttons__equal {
@@ -119,8 +119,9 @@
 body {
   background-image: url(./stars.jpg);
   background-repeat: no-repeat;
-  background-position: center center;
   background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 #buttons {
@@ -139,7 +140,6 @@ body {
   background-color: #040101;
   text-align: end;
   margin: 0 3rem;
-  inline-size: 26rem;
   overflow-wrap: break-word;
 }
 
@@ -149,4 +149,15 @@ body {
 
 #buttons__subscreen {
   font-size: 2rem;
+}
+
+@media screen and (min-width: 768px) {
+  * {
+    font-size: 15px;
+  }
+
+  #buttons {
+    margin-top: 2rem;
+    max-width: 640px;
+  }
 }
